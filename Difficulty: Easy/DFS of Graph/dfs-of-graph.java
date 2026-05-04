@@ -1,25 +1,22 @@
 class Solution {
-    
     public ArrayList<Integer> dfs(ArrayList<ArrayList<Integer>> adj) {
-        int V = adj.size();
-        boolean[] visited = new boolean[V];
-        ArrayList<Integer> result = new ArrayList<>();
-        
-        dfsHelper(0, adj, visited, result);
-        
-        return result;
+        // code here
+        ArrayList<Integer > arr = new ArrayList<>();
+       boolean visited[] =new boolean[adj.size()];
+        for(int  i =0; i<adj.size();i++){
+          //  int node = adj.get(i);
+            if(!visited[i]){
+                dfs(arr,adj,i,visited);
+            }
+        }
+        return arr;
     }
-    
-    private void dfsHelper(int node, ArrayList<ArrayList<Integer>> adj, 
-                           boolean[] visited, ArrayList<Integer> result) {
-        
-        visited[node] = true;
-        result.add(node);
-        
-        // Traverse neighbors in given order
-        for (int neighbor : adj.get(node)) {
-            if (!visited[neighbor]) {
-                dfsHelper(neighbor, adj, visited, result);
+    public void dfs(ArrayList<Integer>arr,ArrayList<ArrayList<Integer>> adj,int i,boolean visited[] ){
+        arr.add(i);
+        visited[i]=true;
+        for(int neighbour:adj.get(i)){
+            if(!visited[neighbour]){
+                dfs(arr,adj,neighbour,visited);
             }
         }
     }
