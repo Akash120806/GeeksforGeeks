@@ -13,7 +13,6 @@ class Solution {
 
             int j = 0;
 
-            // Forward scan
             while (i < n) {
                 if (s1.charAt(i) == s2.charAt(j)) {
                     j++;
@@ -28,7 +27,6 @@ class Solution {
 
             int end = i;
 
-            // Backward scan
             j = m - 1;
 
             while (j >= 0) {
@@ -37,14 +35,12 @@ class Solution {
                 i--;
             }
 
-            i++; // Actual start of window
-
+            i++; 
             if (end - i + 1 < minLen) {
                 minLen = end - i + 1;
                 start = i;
             }
 
-            // Continue searching
             i = i + 1;
         }
 
