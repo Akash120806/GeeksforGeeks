@@ -1,0 +1,25 @@
+class Solution {
+	int minCost(int[] height) {
+		int index = height.length - 1;
+		if (index == 0)return 0;
+		int[] dp =new int[index+1];
+		//	else if (index == 1)return Math.abs(height[0]-height[1]);
+		return cost(index, height,dp);
+		
+	}
+	public int cost(int index, int[]height,int[]dp) {
+	    
+		if (index ==0) {
+			 return 0;
+		}
+		if(dp[index]!=0)return dp[index];
+		int left = cost(index - 1, height,dp) + Math.abs(height[index - 1]-height[index]);
+		int right = Integer.MAX_VALUE;
+		if (index>1) {
+			right = cost(index - 2, height,dp) + Math.abs(height[index - 2]-height[index]);
+		}
+		int c = Math.min(left, right);
+		dp[index]=c;
+		return c;
+	}
+}
